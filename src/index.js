@@ -8,5 +8,3 @@ render(<App />, document.getElementById('root'));
 if (module.hot) {
 	module.hot.accept();
 }
-
-console.log(process.env.TEST);
