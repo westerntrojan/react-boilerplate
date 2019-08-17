@@ -78,7 +78,7 @@ module.exports = {
 	],
 
 	resolve: {
-		extensions: ['.js', '.jsx'],
+		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 		alias: {
 			'~': path.resolve(__dirname, '/'),
 			'&': path.resolve(__dirname, 'src/'),
@@ -99,7 +99,21 @@ module.exports = {
 					},
 				],
 			},
-
+			{
+				test: /\.(ts|tsx)$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'thread-loader',
+					},
+					{
+						loader: 'ts-loader',
+					},
+					{
+						loader: 'babel-loader',
+					},
+				],
+			},
 			{
 				test: /\.scss$/,
 				use: [
@@ -112,7 +126,6 @@ module.exports = {
 					},
 				],
 			},
-
 			{
 				test: /\.css$/,
 				use: [

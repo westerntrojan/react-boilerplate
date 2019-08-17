@@ -1,13 +1,12 @@
 import React from 'react';
 
 import './style.scss';
+import Header from '../layouts/Header';
 
 function App() {
 	return (
 		<div id='root'>
-			<header className='header'>
-				<h1>Header</h1>
-			</header>
+			<Header title='Header' />
 
 			<main className='content'>
 				<h1>Content</h1>
