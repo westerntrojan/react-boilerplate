@@ -1,5 +1,5 @@
 {
-	"name": "webpack",
+	"name": "webpack-config",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -23,6 +23,7 @@
 		"@typescript-eslint/parser": "1.x",
 		"babel-eslint": "10.x",
 		"babel-loader": "^8.0.5",
+		"babel-plugin-transform-react-jsx-source": "^6.22.0",
 		"babel-plugin-transform-react-remove-prop-types": "^0.4.24",
 		"babel-preset-react-optimize": "^1.0.1",
 		"css-loader": "^2.1.1",
