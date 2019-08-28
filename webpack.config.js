@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -70,7 +71,8 @@ module.exports = {
 			},
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'style.css',
+			filename: isDev ? '[name].css' : '[name].[hash].css',
+			chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
 		}),
 		new Dotenv(),
 		new HardSourceWebpackPlugin(),
@@ -79,10 +81,6 @@ module.exports = {
 
 	resolve: {
 		extensions: ['.js', '.jsx'],
-		alias: {
-			'~': path.resolve(__dirname, '/'),
-			'&': path.resolve(__dirname, 'src/'),
-		},
 	},
 
 	module: {
@@ -102,9 +100,29 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				use: [
-					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							hmr: isDev,
+							reloadAll: true,
+						},
+					},
 					{
 						loader: 'css-loader',
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: () => [
+								postcssPresetEnv(),
+								require('postcss-flexbugs-fixes'),
+								require('postcss-preset-env')({
+									autoprefixer: {grid: true},
+									stage: 3,
+								}),
+							],
+						},
 					},
 					{
 						loader: 'sass-loader',
@@ -114,9 +132,29 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							hmr: isDev,
+							reloadAll: true,
+						},
+					},
 					{
 						loader: 'css-loader',
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: () => [
+								postcssPresetEnv(),
+								require('postcss-flexbugs-fixes'),
+								require('postcss-preset-env')({
+									autoprefixer: {grid: true},
+									stage: 3,
+								}),
+							],
+						},
 					},
 				],
 			},

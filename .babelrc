@@ -1,6 +1,24 @@
 {
 	"presets": ["@babel/env", "@babel/react"],
-	"plugins": ["@babel/proposal-class-properties", "@babel/plugin-transform-react-jsx-source"],
+	"plugins": [
+		"@babel/proposal-class-properties",
+		"@babel/plugin-transform-react-jsx-source",
+		"babel-plugin-styled-components"[
+			("babel-plugin-root-import",
+			{
+				"paths": [
+					{
+						"rootPathPrefix": "~",
+						"rootPathSuffix": ""
+					},
+					{
+						"rootPathPrefix": "&",
+						"rootPathSuffix": "./src"
+					}
+				]
+			})
+		]
+	],
 	"env": {
 		"production": {
 			"presets": ["react-optimize"],
