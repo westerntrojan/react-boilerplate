@@ -109,16 +109,19 @@ module.exports = {
 					},
 					{
 						loader: 'css-loader',
+						options: {
+							sourceMap: true,
+						},
 					},
 					{
 						loader: 'postcss-loader',
 						options: {
+							sourceMap: true,
 							ident: 'postcss',
 							plugins: () => [
 								postcssPresetEnv(),
 								require('postcss-flexbugs-fixes'),
 								require('postcss-preset-env')({
-									autoprefixer: {grid: true},
 									stage: 3,
 								}),
 							],
@@ -126,6 +129,9 @@ module.exports = {
 					},
 					{
 						loader: 'sass-loader',
+						options: {
+							sourceMap: true,
+						},
 					},
 				],
 			},
@@ -141,16 +147,19 @@ module.exports = {
 					},
 					{
 						loader: 'css-loader',
+						options: {
+							sourceMap: true,
+						},
 					},
 					{
 						loader: 'postcss-loader',
 						options: {
+							sourceMap: true,
 							ident: 'postcss',
 							plugins: () => [
 								postcssPresetEnv(),
 								require('postcss-flexbugs-fixes'),
 								require('postcss-preset-env')({
-									autoprefixer: {grid: true},
 									stage: 3,
 								}),
 							],
