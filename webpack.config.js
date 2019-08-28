@@ -6,7 +6,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const postcssPresetEnv = require('postcss-preset-env');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -119,8 +118,7 @@ module.exports = {
 							sourceMap: true,
 							ident: 'postcss',
 							plugins: () => [
-								postcssPresetEnv(),
-								require('postcss-flexbugs-fixes'),
+								require('postcss-flexbugs-fixes')(),
 								require('postcss-preset-env')({
 									stage: 3,
 								}),
@@ -157,8 +155,7 @@ module.exports = {
 							sourceMap: true,
 							ident: 'postcss',
 							plugins: () => [
-								postcssPresetEnv(),
-								require('postcss-flexbugs-fixes'),
+								require('postcss-flexbugs-fixes')(),
 								require('postcss-preset-env')({
 									stage: 3,
 								}),
