@@ -40,7 +40,6 @@
 		"no-var": "error",
 		"fp/no-loops": "error",
 		"max-depth": ["warn", 3],
-
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/no-explicit-any": "off",
 		"@typescript-eslint/no-angle-bracket-type-assertion": "off"
