@@ -26,4 +26,4 @@ yarn-error.log*
 .eslintrc.json
 .prettierrc
 info.txt
-webpack.code.workspace
+webpack.code-workspace
