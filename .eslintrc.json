@@ -3,11 +3,17 @@
 		"browser": true,
 		"es6": true
 	},
-	"extends": ["react-app", "plugin:jsx-a11y/recommended", "plugin:prettier/recommended"],
+	"extends": [
+		"react-app",
+		"plugin:jsx-a11y/recommended",
+		"plugin:prettier/recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
 	},
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -33,6 +39,10 @@
 		"no-param-reassign": "warn",
 		"no-var": "error",
 		"fp/no-loops": "error",
-		"max-depth": ["warn", 3]
+		"max-depth": ["warn", 3],
+
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/no-angle-bracket-type-assertion": "off"
 	}
 }
