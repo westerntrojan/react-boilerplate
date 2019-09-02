@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function Header({title}) {
+interface Props {
+	title: string;
+}
+
+const Header = ({title}: Props) => {
 	return (
 		<header className='header'>
 			<h1>{title}</h1>
 		</header>
 	);
-}
-
-Header.propTypes = {
-	title: PropTypes.string,
 };
 
 export default Header;

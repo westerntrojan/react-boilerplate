@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 
 import rootReducer from './reducers';
 
-let store;
+let store: any;
 if (process.env.REACT_APP_NODE_TITLE === 'production') {
 	store = createStore(rootReducer, applyMiddleware(thunk));
 } else {

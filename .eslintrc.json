@@ -15,7 +15,7 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["jsx-a11y", "prettier"],
+	"plugins": ["jsx-a11y", "fp", "prettier"],
 	"rules": {
 		"prettier/prettier": "error",
 		"indent": [
@@ -29,6 +29,10 @@
 		"semi": ["error", "always"],
 		"linebreak-style": ["error", "windows"],
 		"no-unused-vars": "warn",
-		"no-console": "off"
+		"no-console": "off",
+		"no-param-reassign": "warn",
+		"no-var": "error",
+		"fp/no-loops": "error",
+		"max-depth": ["warn", 3]
 	}
 }

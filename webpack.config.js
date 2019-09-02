@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -11,7 +10,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-	entry: path.resolve(__dirname, 'src', 'index.js'),
+	entry: path.resolve(__dirname, 'src', 'index.tsx'),
 
 	output: {
 		path: path.resolve(__dirname, 'build'),
@@ -25,6 +24,7 @@ module.exports = {
 		inline: true,
 		progress: true,
 		publicPath: '/',
+		clientLogLevel: 'error',
 		hot: true,
 	},
 
@@ -44,18 +44,29 @@ module.exports = {
 		},
 		minimizer: [
 			new TerserJSPlugin({
+				terserOptions: {
+					parse: {
+						ecma: 8,
+					},
+					compress: {
+						ecma: 5,
+						warnings: false,
+						comparisons: false,
+						inline: 2,
+					},
+					mangle: {
+						safari10: true,
+					},
+					output: {
+						ecma: 5,
+						comments: false,
+						ascii_only: true,
+					},
+				},
 				cache: true,
 				parallel: true,
 			}),
 			new OptimizeCSSAssetsPlugin({}),
-			new UglifyJsPlugin({
-				sourceMap: true,
-				uglifyOptions: {
-					output: {
-						comments: false,
-					},
-				},
-			}),
 		],
 	},
 
@@ -74,12 +85,14 @@ module.exports = {
 			chunkFilename: isDev ? '[id].css' : '[id].[hash].css',
 		}),
 		new Dotenv(),
-		new HardSourceWebpackPlugin(),
+		new HardSourceWebpackPlugin({
+			cacheDirectory: 'node_modules/.cache/hard-source/[confighash]',
+		}),
 		// new BundleAnalyzerPlugin()
 	],
 
 	resolve: {
-		extensions: ['.js', '.jsx'],
+		extensions: ['.js', '.jsx', '.ts', '.tsx'],
 	},
 
 	module: {
@@ -93,6 +106,15 @@ module.exports = {
 					},
 					{
 						loader: 'babel-loader',
+					},
+				],
+			},
+			{
+				test: /\.ts(x?)$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'ts-loader',
 					},
 				],
 			},

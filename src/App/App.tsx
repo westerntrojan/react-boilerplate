@@ -3,7 +3,7 @@ import React from 'react';
 import './style.scss';
 import Header from '../components/layouts/Header';
 
-function App() {
+const App = () => {
 	return (
 		<div id='root'>
 			<Header title='Header' />
@@ -17,6 +17,6 @@ function App() {
 			</footer>
 		</div>
 	);
-}
+};
 
 export default App;
