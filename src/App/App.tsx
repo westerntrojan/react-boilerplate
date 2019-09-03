@@ -3,7 +3,11 @@ import React from 'react';
 import './style.scss';
 import Header from '../components/layouts/Header';
 
-const App = () => {
+interface Props {
+	children?: React.ReactNode;
+}
+
+const App = ({children}: Props) => {
 	return (
 		<div id='root'>
 			<Header title='Header' />
