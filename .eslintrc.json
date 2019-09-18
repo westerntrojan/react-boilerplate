@@ -33,15 +33,16 @@
 		],
 		"quotes": ["error", "single"],
 		"semi": ["error", "always"],
-		"linebreak-style": ["error", "windows"],
 		"no-unused-vars": "warn",
 		"no-console": "off",
 		"no-param-reassign": "warn",
 		"no-var": "error",
 		"fp/no-loops": "error",
 		"max-depth": ["warn", 3],
-		"@typescript-eslint/explicit-function-return-type": "off",
+
 		"@typescript-eslint/no-explicit-any": "off",
-		"@typescript-eslint/no-angle-bracket-type-assertion": "off"
+		"@typescript-eslint/no-angle-bracket-type-assertion": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/indent": ["error", "tab"]
 	}
 }

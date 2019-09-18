@@ -5,7 +5,7 @@ type Action = {
 	payload: object;
 };
 
-export default (state = initialState.app, action: Action) => {
+export default (state = initialState.app, action: Action): any => {
 	switch (action.type) {
 		default:
 			return state;
