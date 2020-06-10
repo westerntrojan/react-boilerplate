@@ -7,24 +7,21 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const paths = require('./paths');
 
+const isProd = process.env.NODE_ENV === 'production';
 const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
 	entry: paths.src + '/index.tsx',
-
-	output: {
-		path: paths.build,
-		filename: '[name].js',
-	},
 
 	plugins: [
 		new HtmlWebpackPlugin({
 			inject: 'body',
 			hash: true,
 			filename: 'index.html',
-			template: paths.static + '/index.html',
+			template: paths.public + '/index.html',
 			minify: {
-				collapseWhitespace: true,
+				removeComments: isProd,
+				collapseWhitespace: isProd,
 			},
 		}),
 		new MiniCssExtractPlugin({
@@ -38,7 +35,7 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new CopyPlugin([
 			{
-				from: paths.static + '/assets',
+				from: paths.public + '/assets',
 				to: 'assets',
 				ignore: ['*.DS_Store'],
 			},
@@ -54,23 +51,12 @@ module.exports = {
 			{
 				test: /\.js(x?)$/,
 				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'thread-loader',
-					},
-					{
-						loader: 'babel-loader',
-					},
-				],
+				use: ['thread-loader', 'babel-loader', 'eslint-loader'],
 			},
 			{
 				test: /\.ts(x?)$/,
 				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'ts-loader',
-					},
-				],
+				use: ['ts-loader', 'esling-loader'],
 			},
 			{
 				test: /\.scss$/,

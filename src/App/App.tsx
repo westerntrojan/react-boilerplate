@@ -2,23 +2,18 @@ import React from 'react';
 
 import './style.scss';
 import Header from '../components/layouts/Header';
+import Footer from '../components/layouts/Footer';
 
-interface Props {
-	children?: React.ReactNode;
-}
-
-const App = ({children}: Props) => {
+const App: React.FC = () => {
 	return (
 		<div id='root'>
-			<Header title='Header' />
+			<Header />
 
 			<main className='content'>
 				<h1>Content</h1>
 			</main>
 
-			<footer className='footer'>
-				<h1>Footer</h1>
-			</footer>
+			<Footer />
 		</div>
 	);
 };

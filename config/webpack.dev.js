@@ -1,12 +1,18 @@
 const merge = require('webpack-merge');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const paths = require('./paths');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
 	mode: 'development',
 
-	devtool: 'inline-source-map',
+	output: {
+		path: paths.build,
+		filename: '[name].js',
+	},
+
+	devtool: 'source-map',
 
 	devServer: {
 		port: 3000,

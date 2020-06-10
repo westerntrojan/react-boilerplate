@@ -1,13 +1,9 @@
 import React from 'react';
 
-interface Props {
-	title: string;
-}
-
-const Header = ({title}: Props) => {
+const Header: React.FC = () => {
 	return (
 		<header className='header'>
-			<h1>{title}</h1>
+			<h1>{process.env.APP_NAME}</h1>
 		</header>
 	);
 };
